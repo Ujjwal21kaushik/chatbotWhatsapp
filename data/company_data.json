@@ -127,6 +127,14 @@
     {
       "question": "What industries do you serve?",
       "answer": "We work with SMEs, startups, healthcare, education, real estate, e-commerce, manufacturing, and service-based businesses."
+    },
+    {
+      "question": "What features are included in website design?",
+      "answer": "Our website development services include responsive design, mobile-friendly layouts, SEO-friendly structure, contact forms, WhatsApp integration, fast loading speed, secure development, analytics integration, and custom functionality based on business requirements."
+    },
+    {
+      "question": "What website features do you provide?",
+      "answer": "Our websites can include responsive design, SEO optimization, contact forms, WhatsApp integration, lead generation forms, e-commerce functionality, analytics integration, and custom features."
     }
   ]
 }
