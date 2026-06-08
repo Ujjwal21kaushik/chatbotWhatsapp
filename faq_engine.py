@@ -409,20 +409,37 @@ def build_faqs(company_data: dict[str, Any]) -> list[FAQEntry]:
             ],
         )
 
+
     contact_parts = []
+
     if contact["phone"]:
         contact_parts.append(f"Phone: {contact['phone']}")
+
     if contact["email"]:
         contact_parts.append(f"Email: {contact['email']}")
+
     if contact["website"]:
         contact_parts.append(f"Website: {contact['website']}")
+
+    if contact["googleForm"]:
+        contact_parts.append(f"Contact Form: {contact['googleForm']}")
+
     if contact_parts:
         contact_answer = f"You can contact {company_name} here:"
+
+        if contact["phone"]:
+            contact_answer += f"\nPhone: {contact['phone']}"
+
         if contact["email"]:
             contact_answer += f"\nEmail: {contact['email']}"
+
         if contact["website"]:
             contact_answer += f"\nWebsite: {contact['website']}"
 
+        if contact["googleForm"]:
+            contact_answer += f"\nPlease fill out our contact form:"
+            contact_answer += f"\nContact Form: {contact['googleForm']}"
+ 
         _add_variations(
             faqs,
             "How can I contact you?",

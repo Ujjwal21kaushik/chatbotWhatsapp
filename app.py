@@ -89,16 +89,15 @@ def get_services_menu() -> str:
     )
 
 def get_contact_info() -> str:
+    contact = COMPANY_DATA.get("contact", {})
+
     return (
-    "Thank you for your interest.\n\n"
-    "Please share:\n"
-    "• Your Name\n"
-    "• Business Name\n"
-    "• Service Required\n"
-    "• Contact Number\n"
-    "• Email Address\n"
-    "• City\n\n"
-    "Our team will contact you shortly."
+        "Thank you for your interest in RightAds Digital.\n\n"
+        f"Email: {contact.get('email', 'Not Available')}\n"
+        f"Website: {contact.get('website', 'Not Available')}\n\n"
+        "Please fill out our contact form:\n\n"
+        f"{contact.get('googleForm', 'Not Available')}\n\n"
+        "Our team will contact you shortly."
     )
 
 
@@ -143,11 +142,12 @@ def whatsapp_webhook():
         message = incoming_message.lower().strip()
 
         if any(keyword in message for keyword in GREETINGS):
+
             save_lead(
                 profile_name=profile_name,
                 phone=user_number,
             )
-            
+
             logging.info(
                 "Lead Saved | Name=%s | Phone=%s",
                 profile_name,

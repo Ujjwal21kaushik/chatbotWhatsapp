@@ -14,7 +14,6 @@ def save_lead(
     service: str = "Not Provided",
     email: str = "Not Provided",
     city: str = "Not Provided",
-    lead_status: str = "Partial",
 ):
     data = {
         "entry.1897550423": profile_name,
@@ -23,7 +22,6 @@ def save_lead(
         "entry.106808123": service,
         "entry.1916819408": email,
         "entry.1368285891": city,
-        "entry.308524045": lead_status,
     }
 
     try:
@@ -34,10 +32,9 @@ def save_lead(
         )
 
         logging.info(
-            "Lead Saved | Name=%s | Phone=%s | Status=%s | Response=%s",
+            "Lead Saved | Name=%s | Phone=%s | Response=%s",
             profile_name,
             phone,
-            lead_status,
             response.status_code,
         )
 
