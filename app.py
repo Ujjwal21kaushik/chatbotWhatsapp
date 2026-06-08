@@ -22,7 +22,7 @@ from flask import Flask, jsonify, request
 from config import DATA_FILE, FLASK_DEBUG, FLASK_HOST, FLASK_PORT, LOG_FILE, SAFE_FALLBACK_RESPONSE
 from faq_engine import CompanyDataError, build_faqs, find_best_answer, load_company_data, GREETINGS
 from twilio_service import send_whatsapp_reply,send_welcome_template
-
+from lead_service import save_lead
 
 def configure_logging() -> None:
     """Configure rotating file logs for webhook activity and errors."""
@@ -131,6 +131,9 @@ def whatsapp_webhook():
 
     user_number = request.form.get("From", "").strip()
     incoming_message = request.form.get("Body", "").strip()
+    profile_name = request.form.get("ProfileName", "Unknown")
+
+
 
     matched_faq = None
     match_score = 0
@@ -140,6 +143,17 @@ def whatsapp_webhook():
         message = incoming_message.lower().strip()
 
         if any(keyword in message for keyword in GREETINGS):
+            save_lead(
+                profile_name=profile_name,
+                phone=user_number,
+            )
+            
+            logging.info(
+                "Lead Saved | Name=%s | Phone=%s",
+                profile_name,
+                user_number,
+            )
+
             send_welcome_template(user_number)
 
             return jsonify(

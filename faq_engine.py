@@ -127,7 +127,7 @@ class FAQEntry:
     answer: str
     canonical_question: str
 
-
+    
 @dataclass(frozen=True)
 class MatchResult:
     """Result returned by the matcher for logging and webhook handling."""
