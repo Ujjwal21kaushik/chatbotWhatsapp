@@ -191,13 +191,13 @@ def _join_items(items: list[Any]) -> str:
 
 
 def _get_contact(company_data: dict[str, Any]) -> dict[str, str]:
-    """Support both nested contact data and older top-level email/website fields."""
-
     contact = company_data.get("contact") if isinstance(company_data.get("contact"), dict) else {}
+
     return {
         "phone": str(contact.get("phone") or company_data.get("phone") or "").strip(),
         "email": str(contact.get("email") or company_data.get("email") or "").strip(),
         "website": str(contact.get("website") or company_data.get("website") or "").strip(),
+        "googleForm": str(contact.get("googleForm") or "").strip(),
     }
 
 
